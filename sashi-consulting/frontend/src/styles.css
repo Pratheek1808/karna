@@ -1,34 +1,34 @@
 /* CSS Variables & Reset */
 :root {
-    --primary-color: #0B1120;
-    /* Deep Midnight Blue */
-    --secondary-color: #1e293b;
-    /* Slate 800 for sections */
-    --accent-color: #38bdf8;
-    /* Sky Blue Neon (better for dark) */
-    --accent-hover: #0ea5e9;
-    --accent-light: rgba(56, 189, 248, 0.1);
+    --primary-color: #FFF2F1;
+    /* Main Theme Background */
+    --secondary-color: #f1edff;
+    /* Lighter shade for sections */
+    --accent-color: #6d5b99;
+    /* Darker purple for accents/buttons */
+    --accent-hover: #50427a;
+    --accent-light: rgba(109, 91, 153, 0.1);
 
-    --text-light: #f1f5f9;
-    /* Slate 100 for body text */
-    --text-dim: #94a3b8;
-    /* Slate 400 */
-    --heading-color: #ffffff;
-    /* White */
+    --text-light: #2d3748;
+    /* Dark gray for body text on light bg */
+    --text-dim: #4a5568;
+    /* Lighter gray for secondary text */
+    --heading-color: #1a202c;
+    /* Near black for headings */
 
     --white: #ffffff;
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Inter', sans-serif;
     --transition: all 0.3s ease;
 
-    --glass-bg: rgba(30, 41, 59, 0.6);
-    /* Dark Glass */
-    --glass-border: rgba(255, 255, 255, 0.1);
-    /* Subtle white border */
+    --glass-bg: rgba(255, 255, 255, 0.6);
+    /* Light Glass */
+    --glass-border: rgba(109, 91, 153, 0.2);
+    /* Subtle purple border */
 
-    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-    --glow: 0 0 15px rgba(56, 189, 248, 0.3);
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+    --glow: 0 0 15px rgba(109, 91, 153, 0.3);
 }
 
 * {
@@ -170,8 +170,8 @@ ul {
 }
 
 .navbar.scrolled {
-    background: rgba(11, 17, 32, 0.95);
-    /* Dark Glass Background */
+    background: rgba(255, 242, 241, 0.95);
+    /* Light Theme Glass Background */
     box-shadow: var(--shadow-md);
     padding: 15px 0;
     backdrop-filter: blur(10px);
@@ -187,14 +187,14 @@ ul {
     font-family: var(--font-heading);
     font-size: 1.8rem;
     font-weight: 700;
-    color: #ffffff;
-    /* White text on dark hero */
+    color: var(--heading-color);
+    /* Dark text on light hero */
     transition: var(--transition);
 }
 
 .navbar.scrolled .logo {
-    color: #ffffff;
-    /* Keep white on dark scroll */
+    color: var(--heading-color);
+    /* Keep dark on scroll */
 }
 
 .logo span {
@@ -216,15 +216,15 @@ ul {
 
 .nav-links a {
     font-size: 0.95rem;
-    color: #ffffff;
-    /* White text on dark hero */
+    color: var(--heading-color);
+    /* Dark text on light hero */
     font-weight: 500;
     transition: var(--transition);
 }
 
 .navbar.scrolled .nav-links a {
-    color: #ffffff;
-    /* Keep white on dark scroll */
+    color: var(--heading-color);
+    /* Keep dark on scroll */
 }
 
 .nav-links a:hover {
@@ -263,15 +263,15 @@ ul {
     display: flex;
     align-items: center;
     position: relative;
-    background: #0B1120;
-    /* Deep Midnight Blue */
-    color: #ffffff;
-    /* White text for dark bg */
+    background: var(--primary-color);
+    /* Base Theme Purple */
+    color: var(--heading-color);
+    /* Dark text for light bg */
     overflow: hidden;
 }
 
 .hero h1 {
-    color: #ffffff;
+    color: var(--heading-color);
 }
 
 .hero .hero-subtitle {
@@ -579,7 +579,7 @@ ul {
 
 /* CTA Section */
 .cta-section {
-    background: linear-gradient(rgba(11, 17, 32, 0.7), rgba(11, 17, 32, 0.7)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80');
+    background: linear-gradient(rgba(255, 242, 241, 0.8), rgba(255, 242, 241, 0.8)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80');
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
@@ -588,13 +588,13 @@ ul {
 .cta-section h2 {
     font-size: 3rem;
     margin-bottom: 20px;
-    color: var(--white);
+    color: var(--heading-color);
 }
 
 .cta-section p {
     font-size: 1.2rem;
     margin-bottom: 40px;
-    color: var(--white);
+    color: var(--text-light);
 }
 
 /* Contact Section */
@@ -844,14 +844,49 @@ footer {
 }
 
 /* Chatbot Styles */
+.chatbot-floating-mascot {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+    z-index: 10000;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+body.show-chatbot .chatbot-floating-mascot {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+.chatbot-avatar {
+    width: 100%;
+    height: 100%;
+    animation: floatMascot 3s ease-in-out infinite;
+    filter: drop-shadow(0px 10px 10px rgba(109, 91, 153, 0.5));
+}
+
+@keyframes floatMascot {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
 .chatbot-toggler {
     position: fixed;
     bottom: 30px;
-    right: 35px;
+    right: 30px;
     outline: none;
     border: none;
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
     display: flex;
     cursor: pointer;
     align-items: center;
@@ -883,9 +918,9 @@ body.show-chatbot .chatbot-toggler span:last-child {
 
 .chatbot {
     position: fixed;
-    right: 35px;
-    bottom: 90px;
-    width: 420px;
+    right: 30px;
+    bottom: 105px;
+    width: 350px;
     background: #fff;
     border-radius: 15px;
     overflow: hidden;
@@ -931,7 +966,7 @@ header h2 {
 
 .chatbot .chatbox {
     overflow-y: auto;
-    height: 400px;
+    height: 320px;
     padding: 30px 20px 100px;
 }
 
